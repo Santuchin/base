@@ -1,0 +1,13 @@
+
+def encode(num: int, den: int, digits: str) -> str:
+    ...
+
+def encode(num: int, den: int, digits: str) -> str:
+    ...
+
+def valid(num: int, den: int, base: int) -> bool:
+    ...
+
+def length(num: int, den: int, base: int) -> int:
+    ...
+
