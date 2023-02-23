@@ -1,5 +1,5 @@
 
-def encode(number: int, digits: str | bytes) -> str | bytes:
+def encode(number: int, digits):
 
     base = len(digits)
     
@@ -10,7 +10,7 @@ def encode(number: int, digits: str | bytes) -> str | bytes:
         div, mod = divmod(number, base)
         return encode(div, digits) + digits[mod:mod + 1]
 
-def decode(number: str | bytes, digits: str | bytes) -> int:
+def decode(number, digits) -> int:
 
     if 1 == len(number):
         return digits.index(number)
@@ -18,10 +18,10 @@ def decode(number: str | bytes, digits: str | bytes) -> int:
     else:
         return decode(number[:-1], digits) * len(digits) + digits.index(number[-1])
 
-def valid(number: str | bytes, digits: str | bytes, leading: bool=False) -> bool:
+def valid(number, digits, leading: bool=False) -> bool:
 
     if number:
-        return (True if leading else not number.startswith(digits[0:1])) and all(map(digits.__contains__, number))
+        return (True if leading else number[0] != digits[0] and all(map(digits.__contains__, number)))
 
     else:
         return False
@@ -34,10 +34,10 @@ def length(number: int, base: int) -> int:
     else:
         return 1 + length(number // base, base)
 
-def encode_limited(number: int, digits: str | bytes, length: int) -> str | bytes:
+def encode_limited(number: int, digits, length: int):
 
     if 0 == length:
-        return type(digits)()
+        return digits[0:0]
     
     else:
 

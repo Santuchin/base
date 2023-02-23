@@ -1,5 +1,5 @@
 
-def encode(number: int, digits: str | bytes) -> str | bytes:
+def encode(number: int, digits):
 
     base = len(digits)
     
@@ -10,7 +10,7 @@ def encode(number: int, digits: str | bytes) -> str | bytes:
         div, mod = divmod(number - 1, base)
         return digits[mod:mod + 1] + encode(div, digits)
 
-def decode(number: str | bytes, digits: str | bytes) -> int:
+def decode(number, digits) -> int:
 
     if number:
         return 1 + digits.index(number[0]) + decode(number[1:], digits) * len(digits)
@@ -18,11 +18,16 @@ def decode(number: str | bytes, digits: str | bytes) -> int:
     else:
         return 0
 
-def valid(number: int, digits: str | bytes) -> bool:
+def valid(number, digits) -> bool:
     return all(map(digits.__contains__, number))
 
 def length(number: int, base: int) -> int:
-    ...
+    
+    if 0 == number:
+        return 0
+    
+    else:
+        return 1 + length((number - 1) // base, base)
 
 BYTES = bytes(range(2 ** 8))
 ASCII = bytes(range(2 ** 7))
