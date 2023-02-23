@@ -39,20 +39,6 @@ def encode(number: tuple, digits) -> tuple:
 
     return (natural.encode(nat, digits), rat, per)
 
-print(encode((1, 3), '0123456789'))
-
-
-
-
-
-
-
-
-
-
-
-
-
 def decode(number: tuple, digits) -> tuple:
     
     nat, rat, per = number
@@ -68,17 +54,23 @@ def decode(number: tuple, digits) -> tuple:
     else:
         ratnum = 0
     
-    ratden = base ** ratlen
-
-
     pernum = natural.decode(per, digits)
 
     if pernum:
+
         perden = base ** len(per) - 1
 
+        ratden = base ** ratlen
+    
     else:
-        perden = 0
+    
+        perden = 1
+        
+        if ratnum:
+            ratden = base ** ratlen
 
+        else:
+            ratden = 1
 
     num = ratnum * perden + pernum
     den = ratden * perden
@@ -87,4 +79,5 @@ def decode(number: tuple, digits) -> tuple:
 
 def isper(number: tuple, base: int) -> bool:
     ...
+
 
