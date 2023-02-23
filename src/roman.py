@@ -1,17 +1,16 @@
 
-# 'IVXLCDM'
-# {'I': 3, 'V': 1, 'X': 3, 'L': 1, 'C': 3, 'D': 1, 'M': 3}
-# {5: 1, 2: 3}
+DIGITS = 'IVXLCDM'
+VALUE = {5: 1, 2: 3}
 
-def encode(number: int, ...):
+def encode(number: int, digits=DIGITS, value: dict[int: int]=VALUE):
     ...
 
-def decode(number, ...) -> int:
+def decode(number, digits=DIGITS, value: dict[int: int]=VALUE) -> int:
     ...
 
-def valid(number, ...) -> bool:
+def valid(number, digits=DIGITS, value: dict[int: int]=VALUE) -> bool:
     ...
 
-def length(number: int, ...) -> int:
+def length(number: int, value: dict[int: int]=VALUE) -> int:
     ...
 
