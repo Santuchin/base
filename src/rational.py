@@ -1,41 +1,16 @@
-import math
-
-import natural # from . import natural
-
-def log(num, base):
-
-    if base > num:
-        return (0, num)
-
-    else:
-        div, mod = divmod(num, base)
-        res, rem = log(div, base)
-        res += 1
-
-        return (res, num - base ** res)
+from . import natural
 
 def encode(number: tuple, digits) -> tuple:
     
     num, den = number
 
     base = len(digits)
-    
+
+
     nat, mod = divmod(num, den)
-
-    length, rem = log(den, base)
-
-    x = math.lcm(den, base, base - 1) // den
     
-    den *= x
-    mod *= x
-
-    if 0 == rem:
-        rat = natural.encode_limited(mod, digits, length)
-        per = digits[0:1]
-
-    else:
-        rat = ...
-        per = ...
+    rat = ...
+    per = ...
 
     return (natural.encode(nat, digits), rat, per)
 
