@@ -18,8 +18,6 @@ def encode(number: tuple[int, int], digits) -> tuple:
         div, rem = divmod(rem * base, den)
         rat += natural.encode(div, digits)
 
-    print(rem_map)
-
     if rem:
         return (natural.encode(nat, digits), rat[:rem_map[rem]], rat[rem_map[rem]:])
 
