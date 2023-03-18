@@ -1,4 +1,4 @@
-import natural # from . import natural
+from . import natural
 
 def encode(number: tuple[int, int], digits) -> tuple:
 
@@ -25,11 +25,6 @@ def encode(number: tuple[int, int], digits) -> tuple:
 
     else:
         return (natural.encode(nat, digits), rat, digits[0:0])
-
-num = int(input())
-den = int(input())
-
-print(encode((num, den), '0123456789'))
 
 def decode(number: tuple, digits) -> tuple[int, int]:
     
