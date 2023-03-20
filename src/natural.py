@@ -42,9 +42,9 @@ def encode_limited(number: int, digits, length: int):
     else:
 
         base = len(digits)
-        mod = number % base
+        div, mod = divmod(number, base)
 
-        return encode_limited(number // base, digits, length - 1) + digits[mod:mod + 1]
+        return encode_limited(div, digits, length - 1) + digits[mod:mod + 1]
 
 BINARY = '01'
 OCTAL = '01234567'

@@ -6,23 +6,31 @@ def encode(number: tuple[int, int], digits) -> tuple:
 
     base = len(digits)
     
-    nat, rem = divmod(num, den)
+    nat, mod = divmod(num, den)
 
-    rat = ''
-    rem_map = {}
+    ratper = digits[0:0]
+    mods = {}
     
-    while rem and rem not in rem_map:
+    index = 0
+
+    while mod and not mod in mods:
     
-        rem_map[rem] = len(rat)
+        mods[mod] = index
 
-        div, rem = divmod(rem * base, den)
-        rat += natural.encode(div, digits)
+        div, mod = divmod(mod * base, den)
+        ratper += digits[div:div + 1]
 
-    if rem:
-        return (natural.encode(nat, digits), rat[:rem_map[rem]], rat[rem_map[rem]:])
+        index += 1
+
+    if mod:
+        rat = ratper[:mods[mod]]
+        per = ratper[mods[mod]:]
 
     else:
-        return (natural.encode(nat, digits), rat, digits[0:0])
+        rat = ratper
+        per = digits[0:0]
+
+    return (natural.encode(nat, digits), rat, per)
 
 def decode(number: tuple, digits) -> tuple[int, int]:
     
