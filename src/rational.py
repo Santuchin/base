@@ -1,4 +1,4 @@
-from . import natural
+import natural # from . import natural
 
 def encode(number: tuple[int, int], digits) -> tuple:
 
@@ -9,22 +9,21 @@ def encode(number: tuple[int, int], digits) -> tuple:
     nat, mod = divmod(num, den)
 
     ratper = digits[0:0]
-    mods = {}
+    mods = []
     
-    index = 0
-
     while mod and not mod in mods:
     
-        mods[mod] = index
+        mods.append(mod)
 
         div, mod = divmod(mod * base, den)
         ratper += digits[div:div + 1]
 
-        index += 1
-
     if mod:
-        rat = ratper[:mods[mod]]
-        per = ratper[mods[mod]:]
+        
+        index = mods.index(mod)
+    
+        rat = ratper[:index]
+        per = ratper[index:]
 
     else:
         rat = ratper
@@ -76,4 +75,5 @@ def reduce(number: tuple[int, int]) -> tuple[int, int]:
 def period(number: tuple[int, int], base: int) -> bool:
     ...
 
+print(decode(encode((23, 234), natural.DECIMAL), natural.DECIMAL))
 
