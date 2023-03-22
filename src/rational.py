@@ -1,4 +1,4 @@
-import natural # from . import natural
+from . import natural
 
 def encode(number: tuple[int, int], digits) -> tuple:
 
@@ -69,11 +69,22 @@ def decode(number: tuple, digits) -> tuple[int, int]:
 
     return (natural.decode(nat, digits) * den + num, den)
 
-def reduce(number: tuple[int, int]) -> tuple[int, int]:
-    ...
-
 def period(number: tuple[int, int], base: int) -> bool:
-    ...
+    
+    num, den = number
 
-print(decode(encode((23, 234), natural.DECIMAL), natural.DECIMAL))
+    mod = num % base
+
+    mods = []
+
+    while mod:
+        
+        mods.append(mod)
+
+        mod = mod * base % den
+        
+        if mod in mods:
+            return True
+
+    return False
 

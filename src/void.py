@@ -32,3 +32,5 @@ def length(number: int, base: int) -> int:
 BYTES = bytes(range(2 ** 8))
 ASCII = bytes(range(2 ** 7))
 
+print(repr(encode(1, '0123456789')))
+
