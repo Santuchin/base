@@ -19,12 +19,7 @@ def decode(number, digits) -> int:
         return decode(number[:-1], digits) * len(digits) + digits.index(number[-1])
 
 def valid(number, digits, leading: bool=False) -> bool:
-
-    if number:
-        return (True if leading else number[0] != digits[0] and all(map(digits.__contains__, number)))
-
-    else:
-        return False
+    return number and all(map(digits.__contains__, number))) and (leading or number[0] != digits[0])
 
 def length(number: int, base: int) -> int:
 
